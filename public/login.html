@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="loginForm">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="btn" id="login-btn">Login</button>
+                <p class="switch-form">Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+            </form>
+        </div>
+
+        <div class="form-container hidden" id="registerForm">
+            <h2>Register</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-name">Name:</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-age">Age:</label>
+                    <input type="number" id="register-age" name="age" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="password" minlength="6" required>
+                </div>
+                <button type="submit" class="btn" id="register-btn">Register</button>
+                <p class="switch-form">Already have an account? <a href="#" id="showLogin">Login here</a></p>
+            </form>
+        </div>
+
+        <div class="user-dashboard hidden" id="dashboard">
+            <h2>Welcome!</h2>
+            <div id="user-info"></div>
+            <button id="logout-btn" class="btn logout">Logout</button>
+        </div>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <script src="login.js"></script>
+</body>
+</html>

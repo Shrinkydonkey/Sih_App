@@ -25,7 +25,9 @@
 </ul>
 
       <div class="nav-actions">
-        <button class="help-btn">Help Now</button>
+        <a href="login.html">
+          <button class="help-btn">Help Now</button>
+        </a>
       <button class="anon-btn" onclick="window.location.href='anonymous.html'">Anonymous Join</button>
 
       </div>
@@ -37,7 +39,9 @@
       <h1>Your Mental Wellness Journey Starts Here</h1>
       <p>Anonymous, safe, and supportive. Connect with verified counselors and a caring community.</p>
       <div class="hero-btns">
-        <button>Start Anonymous Session</button>
+        <a href="anonymous.html">
+          <button onclick="localStorage.setItem('role', 'seeker')">Start Anonymous Session</button>
+        </a>
         <button class="secondary">Browse Resources</button>
       </div>
     </div>
