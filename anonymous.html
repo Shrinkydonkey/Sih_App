@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindCare - Anonymous Chat</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        <span class="circle"></span>
+        <span class="brand">MindCare</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="anonymous.html" class="active">Join Anonymous</a></li>
+       
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Anonymous Join Section -->
+  <section class="anonymous-container">
+    <h2>Join Anonymously</h2>
+
+    <!-- Language Preference -->
+    <div class="anon-step">
+      <label for="language">🌐 Select Your Language:</label>
+      <select id="language" class="anon-input">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+    </div>
+
+    <!-- Reason for Joining -->
+    <div class="anon-step">
+      <label for="reason">💬 What brings you here?</label>
+      <input list="reasons" id="reason" class="anon-input" placeholder="Type or choose a reason..." />
+      <datalist id="reasons">
+        <option value="Feeling stressed"></option>
+        <option value="Need someone to talk to"></option>
+        <option value="Struggling with studies"></option>
+        <option value="Loneliness"></option>
+        <option value="Just curious"></option>
+      </datalist>
+    </div>
+
+    <!-- Choose Chat Type -->
+    <div class="anon-step">
+      <button id="chatOption" class="chat-option-btn">💬 Start Chat</button>
+      <a href="voicechat.html" class="chat-option-btn" style="text-decoration: none;">🎤 Start Voice Chat</a>
+    </div>
+
+    <!-- Chat Box (hidden initially) -->
+    <div class="chat-box" id="chatBox" style="display: none;">
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">👋 Welcome! You're chatting anonymously. Feel free to share your thoughts.</div>
+      </div>
+      <div class="chat-input-container">
+        <input type="text" id="chatInput" placeholder="Type your message..." class="chat-input"/>
+        <button id="sendBtn" class="chat-send">➤</button>
+      </div>
+    </div>
+
+    <!-- Voice Chat Placeholder (hidden initially) -->
+    <div class="voice-box" id="voiceBox" style="display: none;">
+      <p>🎤 Voice chat feature coming soon! Stay tuned.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MindCare. Anonymous conversations, safe and secure.</p>
+  </footer>
+
+  <!-- JS File -->
+  <script src="anonymous.js"></script>
+</body>
+</html>
