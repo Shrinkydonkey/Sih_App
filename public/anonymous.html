@@ -20,10 +20,10 @@
         <li><a href="resources.html">Resources</a></li>
         <li><a href="games.html">Games</a></li>
         <li><a href="anonymous.html" class="active">Join Anonymous</a></li>
-       
       </ul>
     </nav>
   </header>
+
 
   <!-- Anonymous Join Section -->
   <section class="anonymous-container">
@@ -53,8 +53,8 @@
 
     <!-- Choose Chat Type -->
     <div class="anon-step">
-      <button id="chatOption" class="chat-option-btn">💬 Start Chat</button>
-      <a href="voicechat.html" class="chat-option-btn" style="text-decoration: none;">🎤 Start Voice Chat</a>
+      <button id="chatOption" class="chat-option-btn">💬 Start Text Chat</button>
+      <button id="voiceChatBtn" class="chat-option-btn" onclick="startVoiceChat()">🎤 Start Voice Chat</button>
     </div>
 
     <!-- Chat Box (hidden initially) -->
@@ -67,11 +67,6 @@
         <button id="sendBtn" class="chat-send">➤</button>
       </div>
     </div>
-
-    <!-- Voice Chat Placeholder (hidden initially) -->
-    <div class="voice-box" id="voiceBox" style="display: none;">
-      <p>🎤 Voice chat feature coming soon! Stay tuned.</p>
-    </div>
   </section>
 
   <!-- Footer -->
@@ -81,5 +76,18 @@
 
   <!-- JS File -->
   <script src="anonymous.js"></script>
+  <script>
+    // Show current role for debugging
+    document.addEventListener('DOMContentLoaded', () => {
+        const role = localStorage.getItem('role') || 'user';
+        document.getElementById('currentRole').textContent = role;
+    });
+    
+    // FIXED: Don't override the stored role
+    function startVoiceChat() {
+        // Just navigate to voice chat - don't set role here
+        window.location.href = 'voicechat.html';
+    }
+  </script>
 </body>
 </html>

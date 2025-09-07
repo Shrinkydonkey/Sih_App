@@ -41,7 +41,7 @@ function showMessage(message, type = 'success') {
     }, 4000);
 }
 
-// Login Form Handler
+// Login Form Handler - UPDATED WITH ROLE STORAGE
 loginFormElement.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -63,12 +63,18 @@ loginFormElement.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
+            // STORE ROLE AND TOKEN - THIS IS THE KEY FIX
             localStorage.setItem('token', data.token);
+            localStorage.setItem('helperToken', data.token); // For voice chat auth
             localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // STORE USER ROLE - CRUCIAL FOR VOICE CHAT MATCHING
+            localStorage.setItem('role', data.user.role || 'helper'); // Default to helper for logged-in users
+            
+            console.log('Login successful, stored role:', data.user.role || 'helper');
+            
             showDashboard(data.user);
             showMessage('Login successful! Redirecting...', 'success');
-
-            localStorage.setItem("role", "helper");
 
             setTimeout(() => {
                 window.location.href = 'anonymous.html';
@@ -82,7 +88,6 @@ loginFormElement.addEventListener('submit', async (e) => {
     }
 });
 
-// Register Form Handler
 // Register Form Handler
 registerFormElement.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -107,14 +112,10 @@ registerFormElement.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Don't store token or show dashboard after registration
-            // Just show success message and redirect to login
             showMessage('Registration successful! Please login with your credentials.', 'success');
             
-            // Clear the form
             registerFormElement.reset();
             
-            // Hide register form and show login form
             setTimeout(() => {
                 registerForm.classList.add('hidden');
                 loginForm.classList.remove('hidden');
@@ -130,7 +131,6 @@ registerFormElement.addEventListener('submit', async (e) => {
     }
 });
 
-
 // Show Dashboard
 function showDashboard(user) {
     loginForm.classList.add('hidden');
@@ -143,13 +143,16 @@ function showDashboard(user) {
         <p><strong>Email:</strong> ${user.email}</p>
         <p><strong>Age:</strong> ${user.age}</p>
         <p><strong>Reputation:</strong> ${user.reputation}</p>
+        <p><strong>Role:</strong> ${user.role || 'helper'}</p>
     `;
 }
 
 // Logout Handler
 logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('helperToken');
     localStorage.removeItem('user');
+    localStorage.removeItem('role'); // Clear stored role
     dashboard.classList.add('hidden');
     loginForm.classList.remove('hidden');
     showMessage('Logged out successfully!', 'success');
@@ -163,12 +166,19 @@ window.addEventListener('load', () => {
     if (token && user) {
         try {
             const userData = JSON.parse(user);
+            
+            // Ensure role is set for existing users
+            if (!localStorage.getItem('role')) {
+                localStorage.setItem('role', userData.role || 'helper');
+            }
+            
             showDashboard(userData);
         } catch (error) {
             console.error('Error parsing user data:', error);
             localStorage.removeItem('token');
+            localStorage.removeItem('helperToken');
             localStorage.removeItem('user');
+            localStorage.removeItem('role');
         }
     }
 });
-
